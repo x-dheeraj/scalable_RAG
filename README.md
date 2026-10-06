@@ -143,13 +143,13 @@ Open your browser to `http://localhost:8000/docs` to test the API directly using
 ### 1. Enqueue a Chat Prompt
 
 - **Endpoint:** `POST /chat`
-- **Query Parameter:** `query=explain ram types`
+- **Query Parameter:** `query=Explain NUMA Hardware`
 - **Response:**
 
 ```json
 {
   "status": "queued",
-  "job_id": "81294c08-3983-4378-bb96-1e574ab257f5"
+  "job_id": "327c8550-2584-44b9-b4f7-4937ae1add58"
 }
 
 
@@ -157,13 +157,13 @@ Open your browser to `http://localhost:8000/docs` to test the API directly using
 ### 2. Check Job Status & Retrieve Result
 
 - **Endpoint:** `GET /job-status`
-- **Query Parameter:** `job_id=81294c98-3983-4378-bb96-1e574ab257f5`
+- **Query Parameter:** `job_id=327c8550-2584-44b9-b4f7-4937ae1add58`
 
 - **Response (In Progress):**
 
 ```json
 {
-  "job_id": "81294c98-3983-4378-bb96-1e574ab257f5",
+  "job_id": "327c8550-2584-44b9-b4f7-4937ae1add58",
   "status": "started",
   "result": null
 }
@@ -173,7 +173,7 @@ Open your browser to `http://localhost:8000/docs` to test the API directly using
 
 ```json
 {
-  "job_id": "81294c98-3983-4378-bb96-1e574ab257f5",
+  "job_id": "327c8550-2584-44b9-b4f7-4937ae1add58",
   "status": "finished",
-  "result": "The document discusses modern RAM types, focusing on the differences between..."
+  "result": "NUMA (Non-uniform Memory Access) hardware refers to systems where the cost of accessing specific regions of physical memory varies depending on the location from which the access is initiated..."
 }
