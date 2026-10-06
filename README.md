@@ -42,6 +42,7 @@ Client polls GET /job-status?job_id=... ──► Receives final response
 
 ---
 
+```
 ## ⚡ Concurrency in Action: Distributed Workers
 
 The architecture decouples query reception from long LLM inference times. Multiple background workers listen on the queue and execute RAG pipelines simultaneously:
@@ -77,6 +78,7 @@ The architecture decouples query reception from long LLM inference times. Multip
 ├── server.py                # FastAPI routes (/chat, /job-status)
 └── requirements.txt         # Project dependencies
 
+```
 
 ## 🛠️ Tech Stack
 
@@ -96,6 +98,8 @@ The architecture decouples query reception from long LLM inference times. Multip
 git clone https://github.com/x-dheeraj/scalable_RAG.git
 cd scalable_RAG
 
+```
+
 ### 2. Start Services with Docker Compose
 
 Launch the Qdrant vector database and Redis/Valkey queue containers:
@@ -103,12 +107,15 @@ Launch the Qdrant vector database and Redis/Valkey queue containers:
 ```bash
 docker compose up -d
 
+```
+
 Verify that the containers are up and running:
 
 ```bash
 docker compose ps
 
 
+```
 ### 3. Pull the Ollama Models
 
 Ensure your local Ollama server is running, then pull the required models:
@@ -117,6 +124,7 @@ Ensure your local Ollama server is running, then pull the required models:
 ollama pull qwen2.5:7b
 ollama pull bge-m3
 
+```
 
 ### 4. Create Virtual Environment & Install Dependencies
 
@@ -125,6 +133,8 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
+```
+
 ### 5. Ingest Documents into Qdrant
 
 Run the indexing script to parse the PDF, generate embeddings, and load vector chunks into Qdrant:
@@ -132,6 +142,7 @@ Run the indexing script to parse the PDF, generate embeddings, and load vector c
 ```bash
 python3 index.py
 
+```
 
 ## ⚙️ Running the Application
 
@@ -143,12 +154,14 @@ Open two separate terminals in your project directory (with the virtual environm
 rq worker --with-scheduler
 
 
+```
 ### Terminal 2: Start the FastAPI API Server
 
 ```bash
 python3 -m uvicorn server:app --reload --port 8000
 
 
+```
 ## 📡 API Usage & Endpoints
 
 Open your browser to `http://localhost:8000/docs` to test the API directly using the Swagger UI.
@@ -170,6 +183,7 @@ Open your browser to `http://localhost:8000/docs` to test the API directly using
 
 
 
+```
 ### 2. Check Job Status & Retrieve Result
 
 - **Endpoint:** `GET /job-status`
@@ -186,6 +200,7 @@ Open your browser to `http://localhost:8000/docs` to test the API directly using
   "result": null
 }
 
+```
 
 - **Response (Completed):**
 
