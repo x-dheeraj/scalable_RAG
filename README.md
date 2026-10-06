@@ -48,3 +48,18 @@ Client polls GET /job-status?job_id=... ──► Receives final response
 - **Asynchronous Processing**: Long-running LLM generation runs in background worker processes via Python RQ, keeping FastAPI endpoints non-blocking.
 - **Private & Local Inference**: Powered by local Ollama instances (`qwen2.5:7b`, `bge-m3`) with zero external API fees and total privacy.
 - **Swagger Documentation**: Interactive OpenAPI / Swagger UI provided out-of-the-box by FastAPI.
+
+
+## 📁 Project Structure
+
+```text
+├── client/
+│   └── rq_client.py         # Valkey connection and RQ queue initialization
+├── queues/
+│   └── worker.py            # Background worker task (similarity search + LLM invocation)
+├── cpumemory.pdf            # Sample document knowledge base
+├── docker-compose.yml       # Container services (Qdrant, Redis/Valkey)
+├── index.py                 # Offline indexing script (PDF chunking + Qdrant upload)
+├── main.py                  # Application entry point
+├── server.py                # FastAPI routes (/chat, /job-status)
+└── requirements.txt         # Project dependencies
