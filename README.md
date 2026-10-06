@@ -38,3 +38,13 @@ User / Client
      │
      ▼  Saves Output & Lifecycle Status
 Client polls GET /job-status?job_id=... ──► Receives final response
+
+
+
+## ✨ Features
+
+- **Dockerized Infrastructure**: Run Qdrant vector database and Redis / Valkey queue services locally in lightweight Docker containers.
+- **LangChain Orchestration**: Modular PDF parsing (`PyPDFLoader`), semantic text chunking, embedding generation, and contextual prompt construction.
+- **Asynchronous Processing**: Long-running LLM generation runs in background worker processes via Python RQ, keeping FastAPI endpoints non-blocking.
+- **Private & Local Inference**: Powered by local Ollama instances (`qwen2.5:7b`, `bge-m3`) with zero external API fees and total privacy.
+- **Swagger Documentation**: Interactive OpenAPI / Swagger UI provided out-of-the-box by FastAPI.
