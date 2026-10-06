@@ -63,3 +63,13 @@ Client polls GET /job-status?job_id=... ──► Receives final response
 ├── main.py                  # Application entry point
 ├── server.py                # FastAPI routes (/chat, /job-status)
 └── requirements.txt         # Project dependencies
+
+
+## 🛠️ Tech Stack
+
+- **Framework**: FastAPI, Uvicorn
+- **Orchestration**: LangChain, `langchain-community`, `langchain-ollama`
+- **Vector Database**: Qdrant (Docker)
+- **Task Queue & Broker**: Python RQ, Redis / Valkey (Docker)
+- **LLM Engine**: Ollama (`qwen2.5:7b` / `bge-m3`)
+- **Containerization**: Docker Compose
