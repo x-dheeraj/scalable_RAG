@@ -73,3 +73,107 @@ Client polls GET /job-status?job_id=... ──► Receives final response
 - **Task Queue & Broker**: Python RQ, Redis / Valkey (Docker)
 - **LLM Engine**: Ollama (`qwen2.5:7b` / `bge-m3`)
 - **Containerization**: Docker Compose
+
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/x-dheeraj/scalable_RAG.git
+cd scalable_RAG
+
+### 2. Start Services with Docker Compose
+
+Launch the Qdrant vector database and Redis/Valkey queue containers:
+
+```bash
+docker compose up -d
+
+Verify that the containers are up and running:
+
+```bash
+docker compose ps
+
+
+### 3. Pull the Ollama Models
+
+Ensure your local Ollama server is running, then pull the required models:
+
+```bash
+ollama pull qwen2.5:7b
+ollama pull bge-m3
+
+
+### 4. Create Virtual Environment & Install Dependencies
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+### 5. Ingest Documents into Qdrant
+
+Run the indexing script to parse the PDF, generate embeddings, and load vector chunks into Qdrant:
+
+```bash
+python3 index.py
+
+
+## ⚙️ Running the Application
+
+Open two separate terminals in your project directory (with the virtual environment activated).
+
+### Terminal 1: Start the Background Worker
+
+```bash
+rq worker --with-scheduler
+
+
+### Terminal 2: Start the FastAPI API Server
+
+```bash
+python3 -m uvicorn server:app --reload --port 8000
+
+
+## 📡 API Usage & Endpoints
+
+Open your browser to `http://localhost:8000/docs` to test the API directly using the Swagger UI.
+
+### 1. Enqueue a Chat Prompt
+
+- **Endpoint:** `POST /chat`
+- **Query Parameter:** `query=explain ram types`
+- **Response:**
+
+```json
+{
+  "status": "queued",
+  "job_id": "81294c08-3983-4378-bb96-1e574ab257f5"
+}
+
+
+
+### 2. Check Job Status & Retrieve Result
+
+- **Endpoint:** `GET /job-status`
+- **Query Parameter:** `job_id=81294c98-3983-4378-bb96-1e574ab257f5`
+
+- **Response (In Progress):**
+
+```json
+{
+  "job_id": "81294c98-3983-4378-bb96-1e574ab257f5",
+  "status": "started",
+  "result": null
+}
+
+
+- **Response (Completed):**
+
+```json
+{
+  "job_id": "81294c98-3983-4378-bb96-1e574ab257f5",
+  "status": "finished",
+  "result": "The document discusses modern RAM types, focusing on the differences between..."
+}
