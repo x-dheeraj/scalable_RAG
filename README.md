@@ -47,8 +47,8 @@ Client polls GET /job-status?job_id=... ──► Receives final response
 
 The architecture decouples query reception from long LLM inference times. Multiple background workers listen on the queue and execute RAG pipelines simultaneously:
 
-![Horizontal Worker Concurrency](.assets/parallel_workers_1.png)
-![Horizontal Worker Concurrency](.assets/parallel_workers_2.png)
+![Horizontal Worker Concurrency](./assets/parallel_workers_1.png)
+![Horizontal Worker Concurrency](./assets/parallel_workers_2.png)
 
 
 ---
@@ -171,7 +171,7 @@ Open your browser to `http://localhost:8000/docs` to test the API directly using
 - **Endpoint:** `POST /chat`
 - **Query Parameter:** `query=Explain NUMA Hardware`
 
-![FastAPI POST Chat](.assets/swagger_post_chat.png)
+![FastAPI POST Chat](./assets/swagger_post_chat.png)
 
 - **Response:**
 
@@ -189,7 +189,7 @@ Open your browser to `http://localhost:8000/docs` to test the API directly using
 - **Endpoint:** `GET /job-status`
 - **Query Parameter:** `job_id=327c8550-2584-44b9-b4f7-4937ae1add58`
 
-![FastAPI GET Job Status](.assets/swagger_get_status.png)
+![FastAPI GET Job Status](./assets/swagger_get_status.png)
 
 - **Response (In Progress):**
 
